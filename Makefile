@@ -1,10 +1,11 @@
 build:
 
-ci_setup:
+install:
+ifeq ($(dev), true)
 	pipenv install --deploy --dev
-
-setup:
-	pipenv install --dev
+else
+	pipenv install --deploy
+endif
 
 test: test.lint
 
