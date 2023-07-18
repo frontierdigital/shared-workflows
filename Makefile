@@ -1,5 +1,8 @@
 build:
 
+ci_setup:
+	pipenv install --deploy --dev
+
 setup:
 	pipenv install --dev
 
