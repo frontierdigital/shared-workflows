@@ -1,6 +1,4 @@
 ---
-name: Build & Test
-
 on:
   workflow_call:
 
