@@ -1,7 +1,8 @@
 build:
 
 install:
-ifeq ($(dev), true)
+ifeq ($(INCLUDE_DEV), true)
+	@echo "including dev dependencies"
 	pipenv install --deploy --dev
 else
 	pipenv install --deploy
