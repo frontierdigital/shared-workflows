@@ -1,10 +1,6 @@
 ---
-name: CI
-
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   preflight:
@@ -67,6 +63,17 @@ jobs:
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}-dev
+      - id: get_terraform_version
+        name: Get Terraform version
+        run: |
+          set -euo pipefail
+
+          terraform_version=$(cat ${GITHUB_WORKSPACE}/.tfswitchrc)
+          echo "Terraform version: ${terraform_version}"
+          echo "terraform_version=$terraform_version" >> "$GITHUB_OUTPUT"
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ steps.get_terraform_version.outputs.terraform_version }}
       - name: Install
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: make install
