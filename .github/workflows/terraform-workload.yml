@@ -10,10 +10,6 @@ on:
         required: true
       armClientSecret:
         required: true
-      armSubscriptionId:
-        required: true
-      armTenantId:
-        required: true
 jobs:
   preflight:
     runs-on: ubuntu-latest
@@ -139,15 +135,15 @@ jobs:
         env:
           ARM_CLIENT_ID: ${{ secrets.armClientId }}
           ARM_CLIENT_SECRET: ${{ secrets.armClientSecret }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.armSubscriptionId }}
-          ARM_TENANT_ID: ${{ secrets.armTenantId }}
-          ENVIRONMENT: dev
+          ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
           HELM_CACHE_HOME: "${{ github.workspace }}/.helm/cache"
           HELM_CONFIG_HOME: "${{ github.workspace }}/.helm/config"
           HELM_DATA_HOME: "${{ github.workspace }}/.helm/data"
-          REGION: uksouth
+          REGION: ${{ vars.REGION }}
           SET: standalone
           WORKLOAD_NAME: ${{ inputs.workloadName }}
           WORKLOAD_TYPE: ${{ github.event.repository.name }}
           WORKLOAD_VERSION: ${{ needs.build.outputs.version }}
-          ZONE: demo
+          ZONE: ${{ vars.ZONE }}
