@@ -1,6 +1,10 @@
 ---
 on:
   workflow_call:
+    inputs:
+      workloadName:
+        type: string
+        required: true
     secrets:
       armClientId:
         required: true
@@ -143,7 +147,7 @@ jobs:
           HELM_DATA_HOME: "${{ github.workspace }}/.helm/data"
           REGION: uksouth
           SET: standalone
-          WORKLOAD_NAME: rancher-server
+          WORKLOAD_NAME: ${{ inputs.workloadName }}
           WORKLOAD_TYPE: ${{ github.event.repository.name }}
           WORKLOAD_VERSION: ${{ needs.build.outputs.version }}
           ZONE: demo
