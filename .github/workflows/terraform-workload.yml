@@ -139,7 +139,7 @@ jobs:
           ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
           ENVIRONMENT: ${{ vars.ENVIRONMENT }}
           HELM_CACHE_HOME: "${{ github.workspace }}/.helm/cache"
-          HELM_CONFIG_HOME: "${{ github.workspace }}/.helm/config"
+          HELM_CONFIG_HOME: "${{ github.workspace }}/.helm"
           HELM_DATA_HOME: "${{ github.workspace }}/.helm/data"
           REGION: ${{ vars.REGION }}
           SET: standalone
