@@ -27,7 +27,7 @@ jobs:
           if [[ "${{ github.event.head_commit.message }}" =~ (major|minor|patch)([^,]*) ]]; then
             version_increment_type="${BASH_REMATCH[1]}"
           else
-            version_increment_type="none"
+            version_increment_type="patch"
           fi
           echo "Version increment type: ${version_increment_type}"
           echo "version_increment_type=$version_increment_type" >> "$GITHUB_OUTPUT"
@@ -58,13 +58,11 @@ jobs:
         run: |
           git config --global url."https://x-oauth-basic:${{ secrets.GITHUB_TOKEN }}@github.com/frontierdigital".insteadOf https://github.com/frontierdigital
       - id: increment_version
-        if: needs.preflight.outputs.version_increment_type != 'none'
         uses: reecetech/version-increment@2023.4.1
         with:
           scheme: semver
           increment: ${{ needs.preflight.outputs.version_increment_type }}
       - name: Add version tag
-        if: steps.increment_version.outcome == 'success'
         run: |
           set -euo pipefail
 
