@@ -1,0 +1,8 @@
+# ide
+.env
+.vscode
+
+# python
+.venv
+
+# other
