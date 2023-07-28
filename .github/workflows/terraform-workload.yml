@@ -147,9 +147,7 @@ jobs:
           WORKLOAD_VERSION: ${{ needs.build.outputs.version }}
           ZONE: ${{ vars.ZONE }}
   destroy:
-    needs:
-      - preflight
-      - build
+    needs: deploy
     runs-on: ubuntu-latest
     environment: dev
     steps:
