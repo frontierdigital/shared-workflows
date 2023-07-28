@@ -141,7 +141,7 @@ jobs:
           HELM_CONFIG_HOME: "${{ github.workspace }}/.helm"
           HELM_DATA_HOME: "${{ github.workspace }}/.helm/data"
           REGION: ${{ vars.REGION }}
-          SET: ${{ vars.REGION }}
+          SET: ${{ vars.SET }}
           WORKLOAD_NAME: ${{ inputs.workloadName }}
           WORKLOAD_TYPE: ${{ github.event.repository.name }}
           WORKLOAD_VERSION: ${{ needs.build.outputs.version }}
