@@ -45,8 +45,8 @@ jobs:
           git config --global user.email "bot@frontierdigital.net"
           git config --global user.name "Frontier Digital Bot"
 
-          git tag -a "${{ steps.increment_version.outputs.v-version }}" -m "${{ steps.increment_version.outputs.v-version }}"
-          git push origin "${{ steps.increment_version.outputs.v-version }}"
+          git tag -a "${{ steps.increment_version.outputs.version }}" -m "${{ steps.increment_version.outputs.version }}"
+          git push origin "${{ steps.increment_version.outputs.version }}"
       - id: get_python_version
         name: Get Python version
         run: |
